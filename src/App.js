@@ -117,8 +117,8 @@ search() {
       <div className="App">
         <header className="App-header">
           {/* <img src={'https://seesparkbox.com/foundry/uploads/article_uploads/lunchbot.jpg'} className="App-logo" alt="logo" /> */}
-          {/* <img src='/logo.gif' className="App-logo" alt="logo"/> */}
-          <img src='https://scontent-arn2-1.cdninstagram.com/vp/7cf2a311271c5ef0d296a7ad480de66c/5BD81323/t51.2885-15/sh0.08/e35/s750x750/29738965_2028902177430617_1722097549994622976_n.jpg?_nc_eui2=AeFdBbEE5h7veQXzMIcfmFM12OiKguWco-27H4rcB0tAEDWMYODh9Ra3FsE6VEQi7b4NLaSYKkncuINNL0NtRNL9' className="App-logo" alt="logo"/>
+          <img src='/logo.gif' className="App-logo" alt="logo"/>
+          {/* <img src='https://scontent-arn2-1.cdninstagram.com/vp/7cf2a311271c5ef0d296a7ad480de66c/5BD81323/t51.2885-15/sh0.08/e35/s750x750/29738965_2028902177430617_1722097549994622976_n.jpg?_nc_eui2=AeFdBbEE5h7veQXzMIcfmFM12OiKguWco-27H4rcB0tAEDWMYODh9Ra3FsE6VEQi7b4NLaSYKkncuINNL0NtRNL9' className="App-logo" alt="logo"/> */}
           <h1 className="App-title">Mr. Lunchbot</h1>
         </header>
         <div className="content container">
