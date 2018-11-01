@@ -1,4 +1,4 @@
-'use strict';
+
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -148,6 +148,24 @@ module.exports = {
               compact: true
             }
           },
+          {
+            test: /(\.bootstrap\.css$|bootstrap-theme.css|bootstrap.css)/,
+            use: [
+              {
+                loader: 'style-loader'
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  minimize:
+                    true ||
+                    {
+                      /* CSSNano Options */
+                    }
+                }
+              }
+            ]
+          },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -161,7 +179,8 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            // test: /\.css$/,
+            test: /^((?!\.bootstrap|bootstrap-theme).)*\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -177,7 +196,9 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
-                        sourceMap: shouldUseSourceMap
+                        sourceMap: shouldUseSourceMap,
+                        modules: true,
+                        localIdentName: `[name]_[local]_[hash:4]`
                       }
                     },
                     {
