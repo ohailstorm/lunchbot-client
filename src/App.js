@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 
 const lunchbotServiceUrl = 'https://lunchbot.tips';
 // const lunchbotServiceUrl = '/api';
@@ -114,15 +114,15 @@ search() {
     // const regex = /(.*)(?=(\d{3} \d{2}))/;
     const regex = /(.*)(?=(, \d{3} \d{2}))/;
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={styles.App}>
+        <header className={styles["App-header"]}>
           {/* <img src={'https://seesparkbox.com/foundry/uploads/article_uploads/lunchbot.jpg'} className="App-logo" alt="logo" /> */}
-          <img src='/logo.gif' className="App-logo" alt="logo"/>
+          <img src='/logo.gif' className={styles["App-logo"]} alt="logo"/>
           {/* <img src='https://scontent-arn2-1.cdninstagram.com/vp/7cf2a311271c5ef0d296a7ad480de66c/5BD81323/t51.2885-15/sh0.08/e35/s750x750/29738965_2028902177430617_1722097549994622976_n.jpg?_nc_eui2=AeFdBbEE5h7veQXzMIcfmFM12OiKguWco-27H4rcB0tAEDWMYODh9Ra3FsE6VEQi7b4NLaSYKkncuINNL0NtRNL9' className="App-logo" alt="logo"/> */}
-          <h1 className="App-title">Mr. Lunchbot</h1>
+          <h1 className={styles["App-title"]}>Mr. Lunchbot</h1>
         </header>
-        <div className="content container">
-        <div className="row justify-content-md-center current-suggestion">
+        <div className={`${styles.content} container`}>
+        <div className={`row justify-content-md-center ${styles["current-suggestion"]}`}>
             {/* {places.map(place => ( */}    
               { place &&
               <div className="col-lg-12">
@@ -138,7 +138,7 @@ search() {
             {/* ))} */}
           </div>
         <div className="row">
-        <div className="col-6 justify-content-md-center search-place">
+        <div className={`col-6 justify-content-md-center ${styles["search-place"]}`}>
             <h1>Search</h1>
             <div className="input-group mb-3">
               <div className="input-group-prepend">
