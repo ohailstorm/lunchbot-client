@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadAllSuggestions } from '../actions';
 import PlacesList from '../components/PlacesList';
 import PageWrapper from '../components/PageWrapper';
 import styles from '../pages/Start.css';
 
-const lunchbotServiceUrl = 'https://lunchbot.tips';
-
-export default class ListAll extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      list: [],
-      regex: ''
-    };
-  }
-
+class ListAll extends Component {
   componentDidMount() {
-    fetch(`${lunchbotServiceUrl}/suggestion/list`)
-      .then(res => res.json())
-      .then(list => {
-        console.log('LIST', list);
-
-        this.setState({ list: list });
-      })
-      .catch(console.log);
+    this.props.loadAllSuggestions();
   }
 
   render() {
-    const { list, regex } = this.state;
+    const { list } = this.props;
     return (
       <PageWrapper styles={styles}>
-        <PlacesList list={list} regex={regex} />
+        <PlacesList list={list} />
       </PageWrapper>
     );
   }
 }
+const mapStateToProps = state => ({
+  list: state.suggestions.allPlaces
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadAllSuggestions: () => dispatch(loadAllSuggestions())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListAll);

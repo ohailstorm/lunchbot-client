@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import styles from '../pages/Start.css';
 import PageWrapper from '../components/PageWrapper';
+import { search, addPlace } from '../actions';
 const lunchbotServiceUrl = 'https://lunchbot.tips';
 
-export default class ListAll extends Component {
+const mapStateToProps = state => ({
+  searchResults: state.search.results,
+  error: state.search.error
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    search: searchTerm => {
+      dispatch(search(searchTerm));
+    },
+    addPlace: placeId => {
+      console.log('placeID');
+
+      dispatch(addPlace(placeId));
+    }
+  };
+};
+
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,26 +47,18 @@ export default class ListAll extends Component {
       body: JSON.stringify({ userName: 'Oscar', password: 'reggev-master' })
     })
       .then(res => res.json())
-      .then(res => this.setState({ token: res.token }));
+      .then(res => {
+        this.setState({ token: res.token });
+        localStorage.setItem('token', res.token);
+      });
   }
 
   search(searchTerm) {
-    fetch(`${lunchbotServiceUrl}/search/${searchTerm}`, {
-      cache: 'no-cache',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.state.token}`
-      },
-      mode: 'cors'
-    })
-      .then(res => res.json())
-      .then(searchResults => this.setState({ searchResults, error: false }))
-      .catch(() => this.setState({ searchResults: null, error: true }));
+    this.props.search(searchTerm);
   }
 
   render() {
-    const { error, searchResults } = this.state;
+    const { error, searchResults, addPlace } = this.props;
     return (
       <PageWrapper styles={styles} title="Search">
         <div className={`${styles.content} container`}>
@@ -65,7 +77,12 @@ export default class ListAll extends Component {
                   <h2>No results :(</h2>
                 </div>
               )}
-              {searchResults && <SearchResults searchResults={searchResults} />}
+              {searchResults && (
+                <SearchResults
+                  searchResults={searchResults}
+                  addPlace={placeId => addPlace(placeId)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -73,3 +90,8 @@ export default class ListAll extends Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);

@@ -47,8 +47,7 @@ function PlacesList(props) {
 }
 
 PlacesList.propTypes = {
-  list: PropTypes.array,
-  regex: PropTypes.regex
+  list: PropTypes.array
 };
 
 export default PlacesList;

@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function SearchResults({ searchResults = [] }) {
+export default function SearchResults({
+  searchResults,
+  addPlace = () => null
+}) {
+  if (!searchResults) return null;
   return (
     <div className="col-12">
       <h3>Search Results</h3>
@@ -15,6 +19,7 @@ export default function SearchResults({ searchResults = [] }) {
         </thead>
         <tbody>
           {searchResults &&
+            searchResults.length &&
             searchResults.map((place, index) => (
               <tr>
                 <th scope="row">{index + 1}</th>
@@ -26,7 +31,7 @@ export default function SearchResults({ searchResults = [] }) {
                 <td>{place.address}</td>
                 <td>
                   <button
-                    onClick={() => this.addPlace(place.placeId)}
+                    onClick={() => addPlace(place.placeId)}
                     className="btn btn-success"
                     type="button"
                   >
