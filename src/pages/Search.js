@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import styles from '../pages/Start.css';
-import PageWrapper from '../components/PageWrapper';
+import AppWrapper from '../components/AppWrapper';
 import { search, addPlace } from '../actions';
 const lunchbotServiceUrl = 'https://lunchbot.tips';
 
@@ -60,7 +60,7 @@ class Search extends Component {
   render() {
     const { error, searchResults, addPlace } = this.props;
     return (
-      <PageWrapper styles={styles} title="Search">
+      <AppWrapper styles={styles} title="Search">
         <div className={`${styles.content} container`}>
           <div className="row">
             <div
@@ -86,7 +86,7 @@ class Search extends Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </AppWrapper>
     );
   }
 }

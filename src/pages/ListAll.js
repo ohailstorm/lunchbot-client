@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadAllSuggestions } from '../actions';
 import PlacesList from '../components/PlacesList';
-import PageWrapper from '../components/PageWrapper';
+import AppWrapper from '../components/AppWrapper';
 import styles from '../pages/Start.css';
 
 class ListAll extends Component {
@@ -13,9 +13,9 @@ class ListAll extends Component {
   render() {
     const { list } = this.props;
     return (
-      <PageWrapper styles={styles}>
+      <AppWrapper styles={styles}>
         <PlacesList list={list} />
-      </PageWrapper>
+      </AppWrapper>
     );
   }
 }

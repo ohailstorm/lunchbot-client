@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Start from './pages/Start';
 import Search from './pages/Search';
 import ListAll from './pages/ListAll';
+import Login from './pages/Login';
 import Nav from './components/Nav';
 
 const App = () => (
@@ -12,6 +13,7 @@ const App = () => (
       <Route path="/" exact component={Start} />
       <Route path="/list/" component={ListAll} />
       <Route path="/search/" component={Search} />
+      <Route path="/login/" component={Login} />
     </div>
   </Router>
 );

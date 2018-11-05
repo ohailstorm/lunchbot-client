@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './Start.css';
 import { loadCurrentSuggestions } from '../actions';
 import SingleSuggestion from '../components/SingleSuggestion';
-import PageWrapper from '../components/PageWrapper';
+import AppWrapper from '../components/AppWrapper';
 // import shuffle from "../utils/shuffle";
 
 const lunchbotServiceUrl = 'https://lunchbot.tips';
@@ -54,7 +54,7 @@ class Start extends Component {
     const { suggestionNumber } = this.state;
     const place = places && places[suggestionNumber % places.length];
     return (
-      <PageWrapper title="Lunchbot" styles={styles}>
+      <AppWrapper title="Lunchbot" styles={styles}>
         <div className={`${styles.content} container`}>
           {place && <SingleSuggestion place={place} />}
           <button
@@ -69,7 +69,7 @@ class Start extends Component {
             NEXT
           </button>
         </div>
-      </PageWrapper>
+      </AppWrapper>
     );
   }
 }

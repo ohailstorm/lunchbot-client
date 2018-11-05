@@ -19,6 +19,11 @@ const Nav = () => (
           Search
         </Link>
       </li>
+      <li className="navbar-item">
+        <Link className="nav-link" to="/login/">
+          Login
+        </Link>
+      </li>
     </ul>
   </nav>
 );

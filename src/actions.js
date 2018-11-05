@@ -13,7 +13,9 @@ export const ADD_PLACE = 'ADD_PLACE';
 /*
  * other constants
  */
-const authenticate = () => {
+export const authenticate = ({ userName, password } = {}) => {
+  if (!userName || !password) return null;
+
   fetch(`${lunchbotServiceUrl}/user/auth`, {
     method: 'POST',
     cache: 'no-cache',
@@ -22,11 +24,11 @@ const authenticate = () => {
       'Content-Type': 'application/json'
     },
     mode: 'cors',
-    body: JSON.stringify({ userName: 'Oscar', password: 'reggev-master' })
+    body: JSON.stringify({ userName, password })
   })
     .then(res => res.json())
     .then(res => {
-      this.setState({ token: res.token });
+      console.log('RES', res);
       localStorage.setItem('token', res.token);
     });
 };

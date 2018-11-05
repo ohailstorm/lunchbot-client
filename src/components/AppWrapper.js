@@ -1,6 +1,7 @@
 import React from 'react';
+import styles from '../pages/Start.css';
 
-export const PageWrapper = ({ styles = {}, title, children }) => (
+export const AppWrapper = ({ title, children }) => (
   <div className={styles.App}>
     <header className={styles['App-header']}>
       <h1 className={styles['App-title']}>{title}</h1>
@@ -9,4 +10,4 @@ export const PageWrapper = ({ styles = {}, title, children }) => (
   </div>
 );
 
-export default PageWrapper;
+export default AppWrapper;
