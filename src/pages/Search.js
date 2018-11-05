@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import styles from '../pages/Start.css';
+import PageWrapper from '../components/PageWrapper';
 const lunchbotServiceUrl = 'https://lunchbot.tips';
 
 export default class ListAll extends Component {
@@ -47,10 +48,7 @@ export default class ListAll extends Component {
   render() {
     const { error, searchResults } = this.state;
     return (
-      <div className={styles.App}>
-        <header className={styles['App-header']}>
-          <h1 className={styles['App-title']}>Search</h1>
-        </header>
+      <PageWrapper styles={styles} title="Search">
         <div className={`${styles.content} container`}>
           <div className="row">
             <div
@@ -71,7 +69,7 @@ export default class ListAll extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 }
