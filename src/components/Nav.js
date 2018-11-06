@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => (
+const Nav = ({ isLoggedIn }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <ul className="navbar-nav">
       <li className="navbar-item">
@@ -19,11 +19,13 @@ const Nav = () => (
           Search
         </Link>
       </li>
-      <li className="navbar-item">
-        <Link className="nav-link" to="/login/">
-          Login
-        </Link>
-      </li>
+      {!isLoggedIn && (
+        <li className="navbar-item">
+          <Link className="nav-link" to="/login/">
+            Login
+          </Link>
+        </li>
+      )}
     </ul>
   </nav>
 );

@@ -19,10 +19,11 @@ export class App extends Component {
   }
 
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav isLoggedIn={isLoggedIn} />
           <Route path="/" exact component={Start} />
           <Route path="/list/" component={ListAll} />
           <Route path="/search/" component={Search} />
@@ -33,7 +34,9 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+});
 
 const mapDispatchToProps = dispatch => ({
   authenticate: () => dispatch(authenticate())

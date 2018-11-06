@@ -43,7 +43,7 @@ export const authenticate = ({ userName, password } = {}) => {
       })
       .catch(e => {
         dispatch({ type: USER_LOGIN_FAIL });
-        localStorage.deleteItem('token');
+        localStorage.removeItem('token');
       });
   };
 };
