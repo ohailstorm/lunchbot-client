@@ -47,12 +47,13 @@ export const authenticate = ({ userName, password } = {}) => {
         dispatch({ type: USER_LOGIN_SUCCESS });
       })
       .catch(e => {
-        dispatch({ type: USER_LOGOUT });
         localStorage.removeItem('token');
+        dispatch({ type: USER_LOGOUT });
       });
   };
 };
 export function logoutUser() {
+  localStorage.removeItem('token');
   return { type: USER_LOGOUT };
 }
 export function search(searchTerm) {
