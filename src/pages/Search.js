@@ -5,7 +5,6 @@ import SearchBox from '../components/SearchBox';
 import styles from '../pages/Start.css';
 import AppWrapper from '../components/AppWrapper';
 import { search, addPlace } from '../actions';
-const lunchbotServiceUrl = 'https://lunchbot.tips';
 
 const mapStateToProps = state => ({
   searchResults: state.search.results,

@@ -10,11 +10,16 @@ export const LOAD_ALL_SUGGESTIONS = 'LOAD_ALL_SUGGESTIONS';
 export const LOAD_CURRENT_SUGGESTIONS = 'LOAD_CURRENT_SUGGESTIONS';
 export const ADD_PLACE = 'ADD_PLACE';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
-export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
+export const USER_LOGOUT = 'USER_LOGO';
 
 /*
  * other constants
  */
+
+/*
+* action creators
+*/
+
 export const authenticate = ({ userName, password } = {}) => {
   return async (dispatch, getState) => {
     const token = localStorage.getItem('token');
@@ -42,16 +47,14 @@ export const authenticate = ({ userName, password } = {}) => {
         dispatch({ type: USER_LOGIN_SUCCESS });
       })
       .catch(e => {
-        dispatch({ type: USER_LOGIN_FAIL });
+        dispatch({ type: USER_LOGOUT });
         localStorage.removeItem('token');
       });
   };
 };
-
-/*
- * action creators
- */
-
+export function logoutUser() {
+  return { type: USER_LOGOUT };
+}
 export function search(searchTerm) {
   const token = localStorage.getItem('token');
   return async dispatch => {

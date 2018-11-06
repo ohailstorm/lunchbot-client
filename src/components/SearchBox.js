@@ -7,7 +7,12 @@ export default class SearchBox extends Component {
     return (
       <div className="input-group mb-3">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">
+          <span
+            className="input-group-text"
+            id="basic-addon1"
+            role="img"
+            aria-label="search-icon"
+          >
             🔎
           </span>
         </div>

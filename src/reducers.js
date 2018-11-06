@@ -6,7 +6,7 @@ import {
   LOAD_CURRENT_SUGGESTIONS,
   ADD_PLACE,
   USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL
+  USER_LOGOUT
 } from './actions';
 
 function search(state = {}, action) {
@@ -68,7 +68,7 @@ function user(
         ...state,
         isLoggedIn: true
       };
-    case USER_LOGIN_FAIL:
+    case USER_LOGOUT:
       return {
         ...state,
         isLoggedIn: false

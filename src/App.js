@@ -7,7 +7,7 @@ import Search from './pages/Search';
 import ListAll from './pages/ListAll';
 import Login from './pages/Login';
 import Nav from './components/Nav';
-import { authenticate } from './actions';
+import { authenticate, logoutUser } from './actions';
 
 export class App extends Component {
   static propTypes = {
@@ -19,11 +19,11 @@ export class App extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, logout } = this.props;
     return (
       <Router>
         <div>
-          <Nav isLoggedIn={isLoggedIn} />
+          <Nav isLoggedIn={isLoggedIn} logout={logout} />
           <Route path="/" exact component={Start} />
           <Route path="/list/" component={ListAll} />
           <Route path="/search/" component={Search} />
@@ -39,7 +39,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: () => dispatch(authenticate())
+  authenticate: () => dispatch(authenticate()),
+  logout: () => dispatch(logoutUser())
 });
 
 export default connect(

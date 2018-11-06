@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authenticate } from '../actions';
 import AppWrapper from '../components/AppWrapper';
@@ -22,6 +24,8 @@ export class Login extends Component {
   }
   render() {
     const { userName, password } = this.state;
+    const { authenticate, isLoggedIn } = this.props;
+    if (isLoggedIn) return <Redirect to="/" />;
     return (
       <AppWrapper title="Login">
         <div className="form-inline">
@@ -65,5 +69,15 @@ export class Login extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+});
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  authenticate: userData => dispatch(authenticate(userData))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

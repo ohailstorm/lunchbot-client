@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ isLoggedIn }) => (
+const Nav = ({ isLoggedIn, logout = () => false }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <ul className="navbar-nav">
       <li className="navbar-item">
@@ -24,6 +24,13 @@ const Nav = ({ isLoggedIn }) => (
           <Link className="nav-link" to="/login/">
             Login
           </Link>
+        </li>
+      )}
+      {isLoggedIn && (
+        <li className="navbar-item" onClick={() => logout()}>
+          <a className="nav-link" style={{ cursor: 'pointer' }}>
+            Logout
+          </a>
         </li>
       )}
     </ul>
