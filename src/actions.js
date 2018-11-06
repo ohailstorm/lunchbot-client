@@ -9,28 +9,43 @@ export const SEARCH_RESULTS_FAIL = 'SEARCH_RESULTS_FAIL';
 export const LOAD_ALL_SUGGESTIONS = 'LOAD_ALL_SUGGESTIONS';
 export const LOAD_CURRENT_SUGGESTIONS = 'LOAD_CURRENT_SUGGESTIONS';
 export const ADD_PLACE = 'ADD_PLACE';
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
+export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
 
 /*
  * other constants
  */
 export const authenticate = ({ userName, password } = {}) => {
-  if (!userName || !password) return null;
+  return async (dispatch, getState) => {
+    const token = localStorage.getItem('token');
+    if (token) dispatch({ type: USER_LOGIN_SUCCESS });
 
-  fetch(`${lunchbotServiceUrl}/user/auth`, {
-    method: 'POST',
-    cache: 'no-cache',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    mode: 'cors',
-    body: JSON.stringify({ userName, password })
-  })
-    .then(res => res.json())
-    .then(res => {
-      console.log('RES', res);
-      localStorage.setItem('token', res.token);
-    });
+    const { user: { isLoggedIn } = {} } = getState();
+    if (isLoggedIn) return true;
+
+    if (!userName || !password) return null;
+
+    fetch(`${lunchbotServiceUrl}/user/auth`, {
+      method: 'POST',
+      cache: 'no-cache',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({ userName, password })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log('RES', res);
+        localStorage.setItem('token', res.token);
+        dispatch({ type: USER_LOGIN_SUCCESS });
+      })
+      .catch(e => {
+        dispatch({ type: USER_LOGIN_FAIL });
+        localStorage.deleteItem('token');
+      });
+  };
 };
 
 /*

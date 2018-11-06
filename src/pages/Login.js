@@ -45,7 +45,7 @@ export class Login extends Component {
               <div className="input-group-text">@</div>
             </div>
             <input
-              type="text"
+              type="password"
               className="form-control"
               id="inlineFormInputGroupUsername2"
               placeholder="Password"

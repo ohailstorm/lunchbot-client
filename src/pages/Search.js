@@ -31,28 +31,6 @@ class Search extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    this.authenticate();
-  }
-
-  authenticate() {
-    fetch(`${lunchbotServiceUrl}/user/auth`, {
-      method: 'POST',
-      cache: 'no-cache',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      mode: 'cors',
-      body: JSON.stringify({ userName: 'Oscar', password: 'reggev-master' })
-    })
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ token: res.token });
-        localStorage.setItem('token', res.token);
-      });
-  }
-
   search(searchTerm) {
     this.props.search(searchTerm);
   }

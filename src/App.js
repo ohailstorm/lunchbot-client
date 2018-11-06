@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Start from './pages/Start';
 import Search from './pages/Search';
 import ListAll from './pages/ListAll';
 import Login from './pages/Login';
 import Nav from './components/Nav';
+import { authenticate } from './actions';
 
-const App = () => (
-  <Router>
-    <div>
-      <Nav />
-      <Route path="/" exact component={Start} />
-      <Route path="/list/" component={ListAll} />
-      <Route path="/search/" component={Search} />
-      <Route path="/login/" component={Login} />
-    </div>
-  </Router>
-);
+export class App extends Component {
+  static propTypes = {
+    prop: PropTypes
+  };
 
-export default App;
+  componentDidMount() {
+    this.props.authenticate();
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Nav />
+          <Route path="/" exact component={Start} />
+          <Route path="/list/" component={ListAll} />
+          <Route path="/search/" component={Search} />
+          <Route path="/login/" component={Login} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  authenticate: () => dispatch(authenticate())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

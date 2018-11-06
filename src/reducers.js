@@ -4,7 +4,9 @@ import {
   SEARCH_RESULTS_FAIL,
   LOAD_ALL_SUGGESTIONS,
   LOAD_CURRENT_SUGGESTIONS,
-  ADD_PLACE
+  ADD_PLACE,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL
 } from './actions';
 
 function search(state = {}, action) {
@@ -54,9 +56,32 @@ function suggestions(
   }
 }
 
+function user(
+  state = {
+    isLoggedIn: false
+  },
+  action
+) {
+  switch (action.type) {
+    case USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true
+      };
+    case USER_LOGIN_FAIL:
+      return {
+        ...state,
+        isLoggedIn: false
+      };
+    default:
+      return state;
+  }
+}
+
 const todoApp = combineReducers({
   search,
-  suggestions
+  suggestions,
+  user
 });
 
 export default todoApp;
