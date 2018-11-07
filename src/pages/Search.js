@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { path } from 'ramda';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import styles from '../pages/Start.css';
@@ -7,9 +8,9 @@ import AppWrapper from '../components/AppWrapper';
 import { search, addPlace } from '../actions';
 
 const mapStateToProps = state => ({
-  searchResults: state.search.results,
-  error: state.search.error,
-  isLoggedIn: state.user.isLoggedIn
+  searchResults: path(['search', 'results'], state),
+  error: path(['search', 'error'], state),
+  isLoggedIn: path(['user', 'isLoggedIn'], state)
 });
 
 const mapDispatchToProps = dispatch => {
@@ -18,8 +19,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(search(searchTerm));
     },
     addPlace: placeId => {
-      console.log('placeID');
-
       dispatch(addPlace(placeId));
     }
   };

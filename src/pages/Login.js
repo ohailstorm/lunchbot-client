@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { path } from 'ramda';
 import PropTypes from 'prop-types';
 import { authenticate } from '../actions';
 import AppWrapper from '../components/AppWrapper';
@@ -70,7 +71,7 @@ export class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  isLoggedIn: state.user.isLoggedIn
+  isLoggedIn: path(['user', 'isLoggedIn'], state)
 });
 
 const mapDispatchToProps = dispatch => ({

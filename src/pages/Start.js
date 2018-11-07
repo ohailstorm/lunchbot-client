@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { path } from 'ramda';
 import styles from './Start.css';
 import { loadCurrentSuggestions } from '../actions';
 import SingleSuggestion from '../components/SingleSuggestion';
@@ -74,7 +75,7 @@ class Start extends Component {
   }
 }
 const mapStateToProps = state => ({
-  places: state.suggestions.currentSuggestions
+  places: path(['suggestions', 'currentSuggestions'], state)
 });
 
 const mapDispatchToProps = dispatch => ({

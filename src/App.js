@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { path } from 'ramda';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Start from './pages/Start';
@@ -35,7 +36,7 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.user.isLoggedIn
+  isLoggedIn: path(['user', 'isLoggedIn'], state)
 });
 
 const mapDispatchToProps = dispatch => ({

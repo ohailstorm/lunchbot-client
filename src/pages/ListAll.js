@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { path } from 'ramda';
 import { loadAllSuggestions } from '../actions';
 import PlacesList from '../components/PlacesList';
 import AppWrapper from '../components/AppWrapper';
@@ -20,7 +21,7 @@ class ListAll extends Component {
   }
 }
 const mapStateToProps = state => ({
-  list: state.suggestions.allPlaces
+  list: path(['suggestions', 'allPlaces'], state)
 });
 
 const mapDispatchToProps = dispatch => ({
