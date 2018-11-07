@@ -8,7 +8,8 @@ import { search, addPlace } from '../actions';
 
 const mapStateToProps = state => ({
   searchResults: state.search.results,
-  error: state.search.error
+  error: state.search.error,
+  isLoggedIn: state.user.isLoggedIn
 });
 
 const mapDispatchToProps = dispatch => {
@@ -35,7 +36,7 @@ class Search extends Component {
   }
 
   render() {
-    const { error, searchResults, addPlace } = this.props;
+    const { error, searchResults, addPlace, isLoggedIn } = this.props;
     return (
       <AppWrapper styles={styles} title="Search">
         <div className={`${styles.content} container`}>
@@ -46,9 +47,13 @@ class Search extends Component {
               }`}
             >
               <h1>Search</h1>
-              <SearchBox
-                searchCallback={searchTerm => this.search(searchTerm)}
-              />
+              {isLoggedIn ? (
+                <SearchBox
+                  searchCallback={searchTerm => this.search(searchTerm)}
+                />
+              ) : (
+                <p>You need to be logged in to be able to search.</p>
+              )}
               {error && (
                 <div className="col-12">
                   <h2>No results :(</h2>
