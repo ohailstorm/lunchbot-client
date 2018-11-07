@@ -6,6 +6,14 @@ import PropTypes from 'prop-types';
 import { authenticate } from '../actions';
 import AppWrapper from '../components/AppWrapper';
 
+const mapStateToProps = state => ({
+  isLoggedIn: path(['user', 'isLoggedIn'], state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  authenticate: userData => dispatch(authenticate(userData))
+});
+
 export class Login extends Component {
   static propTypes = {
     prop: PropTypes
@@ -70,13 +78,6 @@ export class Login extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  isLoggedIn: path(['user', 'isLoggedIn'], state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  authenticate: userData => dispatch(authenticate(userData))
-});
 
 export default connect(
   mapStateToProps,

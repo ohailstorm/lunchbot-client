@@ -5,10 +5,14 @@ import styles from './Start.css';
 import { loadCurrentSuggestions } from '../actions';
 import SingleSuggestion from '../components/SingleSuggestion';
 import AppWrapper from '../components/AppWrapper';
-// import shuffle from "../utils/shuffle";
 
-const lunchbotServiceUrl = 'https://lunchbot.tips';
-// const lunchbotServiceUrl = '/api';
+const mapStateToProps = state => ({
+  places: path(['suggestions', 'currentSuggestions'], state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadCurrentSuggestions: () => dispatch(loadCurrentSuggestions())
+});
 
 class Start extends Component {
   constructor() {
@@ -20,34 +24,6 @@ class Start extends Component {
 
   componentDidMount() {
     this.props.loadCurrentSuggestions();
-  }
-
-  goPlaces(placeId) {
-    fetch(`${lunchbotServiceUrl}/suggestion/${placeId}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'PUT',
-      body: {}
-    })
-      .then(res => res.json())
-      .then(console.log);
-  }
-
-  search(searchTerm) {
-    fetch(`${lunchbotServiceUrl}/search/${searchTerm}`, {
-      cache: 'no-cache',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.state.token}`
-      },
-      mode: 'cors'
-    })
-      .then(res => res.json())
-      .then(searchResults => this.setState({ searchResults, error: false }))
-      .catch(() => this.setState({ searchResults: null, error: true }));
   }
 
   render() {
@@ -74,13 +50,6 @@ class Start extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  places: path(['suggestions', 'currentSuggestions'], state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadCurrentSuggestions: () => dispatch(loadCurrentSuggestions())
-});
 
 export default connect(
   mapStateToProps,

@@ -6,6 +6,14 @@ import PlacesList from '../components/PlacesList';
 import AppWrapper from '../components/AppWrapper';
 import styles from '../pages/Start.css';
 
+const mapStateToProps = state => ({
+  list: path(['suggestions', 'allPlaces'], state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadAllSuggestions: () => dispatch(loadAllSuggestions())
+});
+
 class ListAll extends Component {
   componentDidMount() {
     this.props.loadAllSuggestions();
@@ -20,13 +28,6 @@ class ListAll extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  list: path(['suggestions', 'allPlaces'], state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadAllSuggestions: () => dispatch(loadAllSuggestions())
-});
 
 export default connect(
   mapStateToProps,

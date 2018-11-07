@@ -10,6 +10,15 @@ import Login from './pages/Login';
 import Nav from './components/Nav';
 import { authenticate, logoutUser } from './actions';
 
+const mapStateToProps = state => ({
+  isLoggedIn: path(['user', 'isLoggedIn'], state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  authenticate: () => dispatch(authenticate()),
+  logout: () => dispatch(logoutUser())
+});
+
 export class App extends Component {
   static propTypes = {
     prop: PropTypes
@@ -34,15 +43,6 @@ export class App extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  isLoggedIn: path(['user', 'isLoggedIn'], state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  authenticate: () => dispatch(authenticate()),
-  logout: () => dispatch(logoutUser())
-});
 
 export default connect(
   mapStateToProps,
