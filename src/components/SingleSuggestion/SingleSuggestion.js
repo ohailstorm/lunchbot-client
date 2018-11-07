@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './../pages/Start.css';
+import styles from './SingleSuggestion.css';
 
 export default class SingleSuggestion extends Component {
   render() {
@@ -20,7 +20,6 @@ export default class SingleSuggestion extends Component {
               </a>
             </h3>
             <button
-              onClick={() => this.goPlaces(place.placeId)}
               className={`btn-lg btn-${place.open ? 'success' : 'danger'}`}
             >
               Mark as visited

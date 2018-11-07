@@ -1,0 +1,15 @@
+.App-logo {
+  margin-top: 50px;
+}
+
+@keyframes App-logo-spin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

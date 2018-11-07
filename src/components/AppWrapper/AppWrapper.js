@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../pages/Start.css';
+import styles from './AppWrapper.css';
 
 export const AppWrapper = ({ title, children }) => (
   <div className={styles.App}>

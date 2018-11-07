@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { path } from 'ramda';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
-import styles from '../pages/Start.css';
-import AppWrapper from '../components/AppWrapper';
+import styles from '../App.css';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
 import { search, addPlace } from '../actions';
 
 const mapStateToProps = state => ({

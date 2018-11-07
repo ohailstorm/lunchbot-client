@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { path } from 'ramda';
 import PropTypes from 'prop-types';
 import { authenticate } from '../actions';
-import AppWrapper from '../components/AppWrapper';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
 
 const mapStateToProps = state => ({
   isLoggedIn: path(['user', 'isLoggedIn'], state)

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { path } from 'ramda';
-import styles from './Start.css';
+import styles from '../App.css';
 import { loadCurrentSuggestions } from '../actions';
-import SingleSuggestion from '../components/SingleSuggestion';
-import AppWrapper from '../components/AppWrapper';
+import SingleSuggestion from '../components/SingleSuggestion/SingleSuggestion';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
 
 const mapStateToProps = state => ({
   places: path(['suggestions', 'currentSuggestions'], state)

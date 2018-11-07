@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { path } from 'ramda';
 import { loadAllSuggestions } from '../actions';
 import PlacesList from '../components/PlacesList';
-import AppWrapper from '../components/AppWrapper';
-import styles from '../pages/Start.css';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
+import styles from '../App.css';
 
 const mapStateToProps = state => ({
   list: path(['suggestions', 'allPlaces'], state)
